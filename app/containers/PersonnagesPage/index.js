@@ -70,7 +70,7 @@ const init = {
 }
 
 //hook qui appelle la fonction responsable de la requete vers l'Api
-  useEffect(handleCallAPIPerso('spider'));
+  useEffect(()=>{handleCallAPIPerso('spider')});
 
   return (
     <div>
