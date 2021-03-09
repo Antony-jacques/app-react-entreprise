@@ -46,10 +46,28 @@ export default function PersonnagesPage() {
 const handleCallAPIPerso = (name)=> {
   // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
   const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
-  //fait un appel au serveur
-  fetch(url);
+  //fait un appel au serveur. fetch renvoie une promise
+  fetch(url,init)
+  //convertit le résultat qui est une chaine de cararactere en un tableau json
+  .then(response => response.json())
+  .then(json =>{
+    const data =json;
+    console.log("data api", data.data.results)
+  })
 }
 
+//Ajoute des param au header de l'appel APi
+const myHeader = new Headers({
+'Content-Type' : 'application/x-www-form-urlencoded',
+});
+
+//
+const init = { 
+  method : 'GET',
+  headers:myHeader,
+  mode : 'cors'
+
+}
 
 //hook qui appelle la fonction responsable de la requete vers l'Api
   useEffect(handleCallAPIPerso('spider'));
