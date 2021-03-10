@@ -16,61 +16,67 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import TablePerso from './TablePerso';
 
-import { useEffect } from 'react';
-
-/*
-
-const handleCallAPIPerso = (name)=>{
-  // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
-  const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
-  //fait un appel au serveur
-  fetch(url)
-};
-
-*/
-/*
-  useEffect(() => {
-    fetch(url + songId)
-     .then(resp => resp.json())
-     .then(data => this.setSong()
-    }, [selectedSong])
- */
+import { useEffect, useState } from 'react';
 
 export default function PersonnagesPage() {
-  /* useEffect(  ()=>{
-    function myAlrt(){
-      alert('fetch hook');
-    }
-*/
 
-const handleCallAPIPerso = (name)=> {
-  // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
-  const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
-  //fait un appel au serveur. fetch renvoie une promise
-  fetch(url,init)
-  //convertit le résultat qui est une chaine de cararactere en un tableau json
-  .then(response => response.json())
-  .then(json =>{
-    const data =json;
-    console.log("data api", data.data.results)
-  })
-}
 
-//Ajoute des param au header de l'appel APi
-const myHeader = new Headers({
-'Content-Type' : 'application/x-www-form-urlencoded',
-});
 
-//
-const init = { 
-  method : 'GET',
-  headers:myHeader,
-  mode : 'cors'
 
-}
 
-//hook qui appelle la fonction responsable de la requete vers l'Api
-  useEffect(()=>{handleCallAPIPerso('spider')});
+
+  const handleCallAPIPerso = name => {
+    // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
+    const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
+    //fait un appel au serveur. fetch renvoie une promise
+    fetch(url, init)
+      //convertit le résultat qui est une chaine de cararactere en un tableau json
+      .then(response => response.json())
+      .then(json => {
+        const data = json;
+
+      })
+      .catch(error => console.log(error)) // erreur json
+      .catch(error => console.log(error)); // erreur API
+  };
+
+  //Ajoute des param au header de l'appel APi
+  const myHeader = new Headers({
+    'Content-Type': 'application/x-www-form-urlencoded',
+  });
+
+  //
+  const init = {
+    method: 'GET',
+    headers: myHeader,
+    mode: 'cors',
+  };
+
+  //hook qui appelle la fonction responsable de la requete vers l'Api
+  /*useEffect(() => {
+    handleCallAPIPerso('spider'),[init];
+  });*/
+
+  const initialsearch = {
+    searchName: '',
+    persos: [],
+  };
+
+  const [search, setSearch] = useState(initialsearch);
+  //console.log('le perso', initialsearch.persos);
+  console.log('le search', search);
+  //setSearch();
+
+  // https://stackoverflow.com/questions/55342406/updating-and-merging-state-object-using-react-usestate-hook
+  
+  const modifSearch = ()=>{
+    setSearch({ 
+      ...search,
+      searchName: 'toto'
+    
+    })
+  }
+
 
   return (
     <div>
@@ -85,7 +91,7 @@ const init = {
         <FormattedMessage {...messages.header} />
       </H1>
       <TextField id="standard-search" label="Search field" type="search" />
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={modifSearch}>
         Rechercher
       </Button>
       <Checkbox />
