@@ -26,8 +26,9 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable() {
-  const classes = useStyles();
+export default function BasicTable(props) {
+  const classes = props;
+  console.log('BasicTable', props.persos)
 
   return (
     <TableContainer component={Paper}>
