@@ -19,6 +19,10 @@ import TablePerso from './TablePerso';
 import { useEffect, useState } from 'react';
 
 export default function PersonnagesPage() {
+
+  const marvelTab = [];
+
+
   const handleCallAPIPerso = name => {
     // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
     const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
@@ -28,14 +32,22 @@ export default function PersonnagesPage() {
       .then(response => response.json())
       .then(json => {
         const data = json;
+        const apiTab = data.data.results;
         console.log('data api', data.data.results);
+        console.log('apiTab', apiTab);
 
-        console.log('initialsearch', search.persos);
+        // ajouter les donner de apiTab dans marvelTab
+
+        apiTab.map((x)=>{marvelTab.push(x)})
+
+        console.log('marvelTab', marvelTab);
 
 
         //hook
+
+
         
-        console.log('initialsearch V2', search.persos);
+      
       })
       .catch(error => console.log(error)) // erreur json
       .catch(error => console.log(error)); // erreur API
