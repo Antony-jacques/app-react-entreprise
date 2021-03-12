@@ -38,7 +38,18 @@ export default function PersonnagesPage() {
         // ajouter les donner de apiTab dans marvelTab
         apiTab.map((x)=>{marvelTab.push(x)})
 
-        console.log('marvelTab 1ere ligne', marvelTab);
+        //console.log('marvelTab ', marvelTab);
+        //console.log('marvelTab 1ere ligne', marvelTab[0]);
+        const myHook = ()=>{
+          //console.log('test de myHook');
+          console.log('search', search);
+          console.log('search.persos',search.persos);
+          setSearch({...search, persos: apiTab})
+
+          console.log('search apres setSearch',search);
+          console.log('search.persos apres setSearch',search.persos);
+        };
+        myHook()
       })
       .catch(error => console.log(error)) // erreur json
       .catch(error => console.log(error)); // erreur API
@@ -105,7 +116,7 @@ export default function PersonnagesPage() {
         Rechercher
       </Button>
       <Checkbox />
-      <TablePerso persos={marvelTab} />
+      <TablePerso persos={search.persos} />
     </div>
   );
 }

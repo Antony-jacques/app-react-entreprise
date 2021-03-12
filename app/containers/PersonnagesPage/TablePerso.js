@@ -30,10 +30,10 @@ export default function BasicTable(props) {
   const classes = props;
 
   const myData = props.persos;
-  console.log('myData', myData);
+  console.log('BasicTable', props.persos);
 
-  console.log('myData type', typeof myData);
-  console.log('myData key', Object.keys(myData));
+  //console.log('myData type', typeof myData);
+  //console.log('myData key', Object.keys(myData));
 
   return (
     <div>
