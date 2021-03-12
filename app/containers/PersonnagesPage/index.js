@@ -16,6 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import TablePerso from './TablePerso';
 import CardPerso from './CardPerso';
+import GridPerso from './GridPerso';
 
 import { useEffect, useState } from 'react';
 
@@ -118,6 +119,7 @@ export default function PersonnagesPage() {
       </Button>
       <Checkbox />
       <CardPerso perso ={search.persos[0]}/>
+      <GridPerso persos={search.persos}/>
       {/** Si on n'a pas de perso on affiche une div vide */}
       { search.persos[0] ? <TablePerso persos={search.persos} />  : <div></div> }
       
