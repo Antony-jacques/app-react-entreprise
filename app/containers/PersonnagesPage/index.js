@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TablePerso from './TablePerso';
+import CardPerso from './CardPerso';
 
 import { useEffect, useState } from 'react';
 
@@ -36,18 +37,18 @@ export default function PersonnagesPage() {
         console.log('apiTab', apiTab);
 
         // ajouter les donner de apiTab dans marvelTab
-        apiTab.map((x)=>{marvelTab.push(x)})
+        //apiTab.map((x)=>{marvelTab.push(x)})
 
         //console.log('marvelTab ', marvelTab);
         //console.log('marvelTab 1ere ligne', marvelTab[0]);
         const myHook = ()=>{
           //console.log('test de myHook');
-          console.log('search', search);
-          console.log('search.persos',search.persos);
+          //console.log('search', search);
+         // console.log('search.persos',search.persos);
           setSearch({...search, persos: apiTab})
 
-          console.log('search apres setSearch',search);
-          console.log('search.persos apres setSearch',search.persos);
+          //console.log('search apres setSearch',search);
+          //console.log('search.persos apres setSearch',search.persos);
         };
         myHook()
       })
@@ -116,7 +117,10 @@ export default function PersonnagesPage() {
         Rechercher
       </Button>
       <Checkbox />
-      <TablePerso persos={search.persos} />
+      <CardPerso perso ={search.persos[0]}/>
+      {/** Si on n'a pas de perso on affiche une div vide */}
+      { search.persos[0] ? <TablePerso persos={search.persos} />  : <div></div> }
+      
     </div>
   );
 }
