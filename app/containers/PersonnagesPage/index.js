@@ -33,21 +33,12 @@ export default function PersonnagesPage() {
       .then(json => {
         const data = json;
         const apiTab = data.data.results;
-        console.log('data api', data.data.results);
         console.log('apiTab', apiTab);
 
         // ajouter les donner de apiTab dans marvelTab
-
         apiTab.map((x)=>{marvelTab.push(x)})
 
-        console.log('marvelTab', marvelTab);
-
-
-        //hook
-
-
-        
-      
+        console.log('marvelTab 1ere ligne', marvelTab);
       })
       .catch(error => console.log(error)) // erreur json
       .catch(error => console.log(error)); // erreur API
@@ -75,8 +66,6 @@ export default function PersonnagesPage() {
     searchName: '',
     persos: [],
   };
-
-  // console.log(initialsearch.searchName);
 
   const [search, setSearch] = useState(initialsearch);
 
@@ -110,12 +99,13 @@ export default function PersonnagesPage() {
       <Button
         variant="contained"
         color="primary"
+        // il faut mettre handleCallAPIPerso dans une fonction sinon la handleCallAPIPerso est déclenché à chaque fois que le state du boutton est modifié car cela entraine un render
         onClick={()=>{handleCallAPIPerso(search.searchName)}}
       >
         Rechercher
       </Button>
       <Checkbox />
-      <TablePerso persos={search.persos} />
+      <TablePerso persos={marvelTab} />
     </div>
   );
 }
