@@ -8,11 +8,13 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';
+import H2 from 'components/H2';
 import messages from './messages';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import TablePerso from './TablePerso';
 import CardPerso from './CardPerso';
@@ -45,10 +47,10 @@ export default function PersonnagesPage() {
         const myHook = ()=>{
           //console.log('test de myHook');
           //console.log('search', search);
-         // console.log('search.persos',search.persos);
+          console.log('search.persos',search.persos);
           setSearch({...search, persos: apiTab})
 
-          //console.log('search apres setSearch',search);
+          console.log('search apres setSearch',search);
           //console.log('search.persos apres setSearch',search.persos);
         };
         myHook()
@@ -56,6 +58,12 @@ export default function PersonnagesPage() {
       .catch(error => console.log(error)) // erreur json
       .catch(error => console.log(error)); // erreur API
   };
+
+  const handleCheck = (e)=>{
+    console.log('check',search.checked)
+    const c = e.target.checked;
+    setSearch({...search, checked: c})
+  }
 
   //Ajoute des param au header de l'appel APi
   const myHeader = new Headers({
@@ -78,6 +86,7 @@ export default function PersonnagesPage() {
   const initialsearch = {
     searchName: '',
     persos: [],
+    checked : true
   };
 
   const [search, setSearch] = useState(initialsearch);
@@ -100,7 +109,6 @@ export default function PersonnagesPage() {
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      <h2>{search.searchName}</h2>
       <TextField
         id="standard-search"
         label="Search field"
@@ -117,11 +125,26 @@ export default function PersonnagesPage() {
       >
         Rechercher
       </Button>
-      <Checkbox />
-      <CardPerso perso ={search.persos[0]}/>
-      <GridPerso persos={search.persos}/>
+      <FormControlLabel
+            control={
+              <Checkbox 
+              checked={search.checked}
+              onChange={handleCheck}
+            />}
+            label="Voir les résultats de la recherche sous forme de cartes"
+          />
+
+
+      {/* 
+          Carte du 1er perso
+          <CardPerso perso ={search.persos[0]}/>
+      */}
+
+      {/*Si la checkbox est true on affiche GridPerso sinon TablePerso */}
+      { search.checked ? <GridPerso persos={search.persos}/> : <TablePerso persos={search.persos} />}
+      
       {/** Si on n'a pas de perso on affiche une div vide */}
-      { search.persos[0] ? <TablePerso persos={search.persos} />  : <div></div> }
+      { /*search.persos[0] ? <TablePerso persos={search.persos} />  : <div></div> */ }
       
     </div>
   );

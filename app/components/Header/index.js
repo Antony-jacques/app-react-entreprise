@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import Banner from './banner.jpg';
 import messages from './messages';
+import Banner2 from './banner2.jpg';
 
 import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
@@ -15,7 +16,7 @@ function Header() {
   return (
     <div>
       <A href="https://www.reactboilerplate.com/">
-        <Img src={Banner} alt="react-boilerplate - Logo" />
+        <Img src={Banner2} alt="react-boilerplate - Logo" />
       </A>
       <NavBar>
         <NavLink to="/search" style={{textDecoration:'none'}}>
