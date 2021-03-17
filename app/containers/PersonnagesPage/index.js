@@ -86,7 +86,7 @@ export default function PersonnagesPage() {
   const initialsearch = {
     searchName: '',
     persos: [],
-    checked : false
+    checked : true
   };
 
   const [search, setSearch] = useState(initialsearch);
