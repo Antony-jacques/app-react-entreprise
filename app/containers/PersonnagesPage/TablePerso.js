@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   table: {
@@ -52,7 +53,9 @@ export default function BasicTable(props) {
             {myData.map(row => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                  {row.id}
+                  <NavLink to={'/persobyid/' + row.id }> {/*lien clicable pour chaque id du tableau */}
+                    {row.id}
+                  </NavLink>
                 </TableCell>
                 <TableCell align="right">{row.name}</TableCell>
                 <TableCell align="right">{row.description}</TableCell>

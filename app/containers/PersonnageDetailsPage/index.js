@@ -18,10 +18,22 @@ import { useEffect, useState } from 'react';
 
 export default function PersonnagesDetailsPage(props) {   // il faut passer props en param pour pouvoir ensuite acceer a match
 
+    //
+    const init = {
+      method: 'GET',
+      headers: myHeader,
+      mode: 'cors',
+    };
+  
+    const initialsearch = {
+      persos: null,
+      serchId : props.match.params.id
+    };
+    
   //hook qui se declenche quand le compo est monté
   useEffect(() => {
     const handleCallAPIPerso = id => {
-      // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${name}
+      // on utilise les bactics pour pouvoir variabiliser l'url avec la variable name en utilisant la synthaxe ${id}
       const url = `https://gateway.marvel.com:443/v1/public/characters/${id}?apikey=168ac8865b5464d4e8ed9e5b2281ba79`;
       //fait un appel au serveur. fetch renvoie une promise
       fetch(url, init)
@@ -33,7 +45,7 @@ export default function PersonnagesDetailsPage(props) {   // il faut passer prop
           console.log('apiTab', apiTab);
   
           const myHook = ()=>{
-            console.log('search.persos',search.persos);
+            console.log('search avant setSearch',search);
             setSearch({...search, persos: apiTab})
   
             console.log('search apres setSearch',search);
@@ -55,17 +67,7 @@ export default function PersonnagesDetailsPage(props) {   // il faut passer prop
     'Content-Type': 'application/x-www-form-urlencoded',
   });
 
-  //
-  const init = {
-    method: 'GET',
-    headers: myHeader,
-    mode: 'cors',
-  };
 
-  const initialsearch = {
-    persos: null,
-    serchId : props.match.id
-  };
 
 
 
@@ -75,41 +77,6 @@ export default function PersonnagesDetailsPage(props) {   // il faut passer prop
 console.log('match', props.match.params.id);
 
 
- // hook qui appelle la function handleCallAPIPerso en lui passant en argument le param de la route
- 
- /*
- Ne declenche rien
-
- ()=>{
-  useEffect(() => {
-    handleCallAPIPerso(props.match.params.id),[];
-  });
- }
-*/
-
-/*
-declenche en boucle
-const test= ()=>{
-  useEffect(() => {
-    
-      handleCallAPIPerso(props.match.params.id),[];
-    
-  });
-}
-
-test()
-*/
-
-
-/*
-
-infini
-
-useEffect(() => {
-  handleCallAPIPerso(props.match.params.id),[];
-});
-
-*/
 
   return (
     <div>

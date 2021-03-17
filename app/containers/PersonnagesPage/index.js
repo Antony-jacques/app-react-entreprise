@@ -50,7 +50,7 @@ export default function PersonnagesPage() {
           console.log('search.persos',search.persos);
           setSearch({...search, persos: apiTab})
 
-          console.log('search apres setSearch',search);
+          console.log('search apres setSearch',search.persos);
           //console.log('search.persos apres setSearch',search.persos);
         };
         myHook()
@@ -86,7 +86,7 @@ export default function PersonnagesPage() {
   const initialsearch = {
     searchName: '',
     persos: [],
-    checked : true
+    checked : false
   };
 
   const [search, setSearch] = useState(initialsearch);
