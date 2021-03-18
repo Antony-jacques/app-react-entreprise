@@ -46,7 +46,6 @@ export default function BasicTable(props) {
               <TableCell align="right">Nom</TableCell>
               <TableCell align="right">Description</TableCell>
               <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Comics</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -60,7 +59,6 @@ export default function BasicTable(props) {
                 <TableCell align="right">{row.name}</TableCell>
                 <TableCell align="right">{row.description}</TableCell>
                 <TableCell align="right">{row.modified}</TableCell>
-                <TableCell align="right">{row.comics.available}</TableCell>
               </TableRow>
             ))}
           </TableBody>
