@@ -54,14 +54,7 @@ export default function PersonnagesPage() {
         const apiTab = data.data.results;
         console.log('apiTab', apiTab);
 
-        // ajouter les donner de apiTab dans marvelTab
-        //apiTab.map((x)=>{marvelTab.push(x)})
-
-        //console.log('marvelTab ', marvelTab);
-        //console.log('marvelTab 1ere ligne', marvelTab[0]);
         const myHook = () => {
-          //console.log('test de myHook');
-          //console.log('search', search);
           console.log('search.persos', search.persos);
           setSearch({ ...search, persos: apiTab });
 

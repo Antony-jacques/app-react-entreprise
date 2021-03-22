@@ -19,15 +19,19 @@ function Header() {
       <NavBar>
         <NavLink to="/search" style={{textDecoration:'none'}}>
           <Button variant="contained" color="secondary" >
-            Search
+            Rechercher
           </Button>
         </NavLink>
         <HeaderLink to="/">
           <FormattedMessage {...messages.home} />
         </HeaderLink>
-        <HeaderLink to="/features">
+        {/*
+                <HeaderLink to="/features">
           <FormattedMessage {...messages.features} />
         </HeaderLink>
+
+        
+        */}
       </NavBar>
     </div>
   );

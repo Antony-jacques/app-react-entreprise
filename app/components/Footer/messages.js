@@ -9,13 +9,13 @@ export const scope = 'boilerplate.components.Footer';
 
 export default defineMessages({
   licenseMessage: {
-    id: `${scope}.license.message`,
-    defaultMessage: 'Thisssssss project is licensed under the MIT license.',
+    id: `${scope}.Ce projet a été réalisé par A.JACQUES`,
+    defaultMessage: 'Ce projet a été réalisé par A.JACQUES',
   },
   authorMessage: {
-    id: `${scope}.author.message`,
+    id: `${scope}.2021`,
     defaultMessage: `
-      Made with love by {author}.
+      2021
     `,
   },
 });
