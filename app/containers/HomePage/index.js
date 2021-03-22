@@ -60,10 +60,10 @@ export function HomePage({
   return (
     <article>
       <Helmet>
-        <title>Home Page</title>
+        <title>Appli MARVEL</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="A React.js application homepage"
         />
       </Helmet>
       <div>
@@ -75,7 +75,10 @@ export function HomePage({
             <FormattedMessage {...messages.startProjectMessage} />
           </p>
         </CenteredSection>
-        <Section>
+
+        {/*
+        
+                <Section>
           <H2>
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
@@ -96,6 +99,9 @@ export function HomePage({
           </Form>
           <ReposList {...reposListProps} />
         </Section>
+
+        */}
+
       </div>
     </article>
   );

@@ -18,7 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 500,
   },
   media: {
     height: 0,
@@ -46,7 +46,10 @@ export default function RecipeReviewCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-//console.log('card perso', props);
+
+  const myName = props.perso.name;
+  const firstLetter = myName.split("")[0];
+ // console.log('myName',firstLetter);
 //console.log('card  props.perso.name', props.perso.name);
   return (
  
@@ -60,7 +63,7 @@ export default function RecipeReviewCard(props) {
     <CardHeader
       avatar={
         <Avatar aria-label="recipe" className={classes.avatar}>
-          R
+          {firstLetter}
         </Avatar>
       }
       action={
