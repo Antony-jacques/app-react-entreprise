@@ -37,17 +37,22 @@ export default function CrudPage() {
 
 
   useEffect(() => {
+    
     Axios.get('http://localhost:3001/api/get').then((response)=>{ // response designe ce qui est récupéré quand on fait appel à l'url
     setCharacterList(response.data)    })
   },[])
 
   // requete post avec Axios
 const submitCharacter = ()=>{
-  Axios.post('http://localhost:3001/api/insert', {characterName:characterName, description: description, image:image}) // on crée un objet auquel on passe les states et qui sera ensuite transmis au back
-  .then(()=>{
-    alert('success insert');
-  })
+  Axios.post('http://localhost:3001/api/insert', {characterName:characterName, description: description, image:image}); // on crée un objet auquel on passe les states et qui sera ensuite transmis au back
+
+
+    setCharacterList([...characterList, {nom: characterName, description: description, image:image   }])
 }
+
+console.log('characterName', characterName)
+console.log('description', description)
+console.log('image', image)
 
   return (
     <div className="form">
