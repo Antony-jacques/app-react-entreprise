@@ -17,6 +17,9 @@ import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CrudCard from './CrudCard';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +49,7 @@ export default function CrudPage() {
 const submitCharacter = ()=>{
   Axios.post('http://localhost:3001/api/insert', {characterName:characterName, description: description, image:image}); // on crée un objet auquel on passe les states et qui sera ensuite transmis au back
 
-
+// ajoute le perso a la liste de personnages
     setCharacterList([...characterList, {nom: characterName, description: description, image:image   }])
 }
 
@@ -88,7 +91,18 @@ console.log('image', image)
       </Button>
 
       {characterList.map((val)=>{
-        return <h1>Nom: {val.nom} | Description: {val.description}</h1>
+        return (
+          <div>
+
+            {/*
+                      <h1>Nom: {val.nom} | Description: {val.description}</h1>
+
+            */}
+
+            <CrudCard perso={val}></CrudCard>
+
+          </div>
+          )
       })}
       </form>
     </div>
