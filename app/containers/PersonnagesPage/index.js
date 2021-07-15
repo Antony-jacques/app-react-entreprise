@@ -116,19 +116,20 @@ export default function PersonnagesPage() {
         </H1>
       </Box>
 
-      {/** **************************************                 GRID              */}
+      {/** **************************************        ço         GRID              */}
 
       <Grid container justify="center" spacing={3}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} style={{display: 'flex', justifyContent: 'center', }}>
           <TextField
             id="standard-search"
-            label="Search field"
+            label="Nom du personnage Marvel"
             type="search"
             value={search.searchName}
             onChange={e => setSearch({ ...search, searchName: e.target.value })}
+            style={{width: '100%'}}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} style={{display: 'flex', justifyContent: 'center'}}>
           <Button
             variant="contained"
             color="primary"
@@ -136,6 +137,7 @@ export default function PersonnagesPage() {
             onClick={() => {
               handleCallAPIPerso(search.searchName);
             }}
+            style={{width: '100%'}}
           >
             Rechercher
           </Button>

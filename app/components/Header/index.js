@@ -17,14 +17,15 @@ function Header() {
     <div>
         <Img src={Banner2} alt=" Logo" />
       <NavBar>
+
+        <HeaderLink to="/">
+          <FormattedMessage {...messages.home} />
+        </HeaderLink>
         <NavLink to="/search" style={{textDecoration:'none'}}>
           <Button variant="contained" color="secondary" >
             Rechercher
           </Button>
         </NavLink>
-        <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
-        </HeaderLink>
         {/*
                 <HeaderLink to="/features">
           <FormattedMessage {...messages.features} />

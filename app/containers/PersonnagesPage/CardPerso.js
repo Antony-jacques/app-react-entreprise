@@ -78,13 +78,14 @@ export default function RecipeReviewCard(props) {
       className={classes.media}
       image={props.perso.thumbnail.path + '.' + props.perso.thumbnail.extension}
       title={props.perso.name}
+      style ={ {backgroundPosition: 'center'}}
     />
     <CardContent>
       <Typography variant="body2" color="textSecondary" component="p">
-      {props.perso.description}
+      {props.perso.description ? props.perso.description : <div>There are no description for this character at the moment.</div> }
       </Typography>
     </CardContent>
-    <CardActions disableSpacing>
+    {/* <CardActions disableSpacing>
       <IconButton aria-label="add to favorites">
         <FavoriteIcon />
       </IconButton>
@@ -106,7 +107,7 @@ export default function RecipeReviewCard(props) {
       <CardContent>
       {props.perso.description}
       </CardContent>
-    </Collapse>
+    </Collapse> */}
   </Card>
 
     
