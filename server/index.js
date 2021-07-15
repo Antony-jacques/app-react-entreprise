@@ -43,6 +43,37 @@ app.post('/api/insert', (req,res)=>{   // require pour recup de la data venant u
         console.log('result',result )
     });
 });
+
+app.delete('/api/delete/ttt', (req,res)=>{
+    const sqlDelete = "DELETE FROM personnages WHERE nom = ttt";
+    db.query(sqlDelete);
+
+    /*
+    const name=req.params.characterName;
+    const sqlDelete = "DELETE FROM personnages WHERE nom = ?";
+
+    db.query(sqlDelete, name, (err, result)=>{
+        if (err) console.log(err);
+    }) 
+    */
+})
+
+app.put('/api/update', (req,res)=>{   
+    console.log('back req.params', req.params);
+
+
+    const name=req.params.nom
+    const description=req.params.description
+
+    const sqlUpdate = "UPDATE personnages SET  description = ? WHERE nom = ?";
+
+    db.query(sqlUpdate, [name, description], (err, result)=>{
+        if (err) console.log(err);
+    }) 
+
+
+});
+
 app.listen(3001, ()=>{
     console.log('running on port 3001');
 })

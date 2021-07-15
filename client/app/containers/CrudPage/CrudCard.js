@@ -16,6 +16,18 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import Button from '@material-ui/core/Button';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+
+import Fab from '@material-ui/core/Fab';
+
+import TextField from '@material-ui/core/TextField';
+import Axios from 'axios';
+import { useEffect, useState } from 'react';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 500,
@@ -47,9 +59,27 @@ export default function CrudCard(props) {
     setExpanded(!expanded);
   };
 
+  const[newDescription, setNewDescription] = useState("")
+
 
   const myName = props.perso.nom;
   const firstLetter = myName.split("")[0];
+
+  const deleteCharacter = (myName)=>{
+   Axios.delete('http://localhost:3001/api/delete/ttt' )
+    console.log('deleteCharacter');
+  }
+
+  const updateDescription = (myName)=>{
+    console.log('myName',myName)
+    /*
+    Axios.put("http://localhost:3001/api/update",{
+      characterName:myName, 
+      description: newDescription
+    });
+    setNewDescription("")
+    */
+   }
 
   return (
     <Card className={classes.root}>
@@ -83,6 +113,44 @@ export default function CrudCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+
+        
+
+        <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={()=>{deleteCharacter(myName)}}
+      >
+        Supprimer
+      </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        startIcon={<EditIcon />}
+        onClick={()=>{updateDescription(myName)}}
+      >
+        Modifier
+      </Button>
+        
+        
+        
+      <TextField 
+      id="updateInput" 
+      label="" 
+      onChange={(e)=>{
+        setNewDescription(e.target.value)
+      }}
+       />
+
+
+
+
+
+
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

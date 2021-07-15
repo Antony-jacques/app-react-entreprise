@@ -16,6 +16,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
@@ -53,12 +55,15 @@ export default function RecipeReviewCard(props) {
 //console.log('card  props.perso.name', props.perso.name);
   return (
  
-      <div>
+      <div className={classes.root}>
+              <Grid container spacing={3}>
+
 
 {/** si un personnage est passé au composant */}
 { props.perso ? 
     
-    <Card className={classes.root}>
+    <Grid item xs={12}>
+    <Card style={{backgroundColor:'red'}} className={classes.root}>
 
     <CardHeader
       avatar={
@@ -78,13 +83,16 @@ export default function RecipeReviewCard(props) {
       className={classes.media}
       image={props.perso.thumbnail.path + '.' + props.perso.thumbnail.extension}
       title={props.perso.name}
+      style ={ {backgroundSize: 'contain'}}
     />
     <CardContent>
       <Typography variant="body2" color="textSecondary" component="p">
-      {props.perso.description}
+      {/* {props.perso.description} */}
+      {props.perso.description ? props.perso.description:<div style={{textAlign:'center'}}>Pas de description pour ce personnage</div>}
+
       </Typography>
     </CardContent>
-    <CardActions disableSpacing>
+    {/* <CardActions disableSpacing>
       <IconButton aria-label="add to favorites">
         <FavoriteIcon />
       </IconButton>
@@ -101,20 +109,22 @@ export default function RecipeReviewCard(props) {
       >
         <ExpandMoreIcon />
       </IconButton>
-    </CardActions>
+    </CardActions> */}
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
       {props.perso.description}
       </CardContent>
     </Collapse>
   </Card>
+  </Grid>
+
 
     
     : <div></div> }
 
 
 
-
+</Grid>
       </div>
   );
 }

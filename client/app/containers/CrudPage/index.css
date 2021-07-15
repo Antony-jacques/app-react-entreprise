@@ -1,3 +1,7 @@
 .form{
     display:flex;flex-direction: column;
 }
+
+#editButton{
+    margin:0 1rem;
+}

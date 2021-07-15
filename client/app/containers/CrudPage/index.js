@@ -20,6 +20,10 @@ import Button from '@material-ui/core/Button';
 import CrudCard from './CrudCard';
 
 
+import DeleteIcon from '@material-ui/icons/Delete';
+
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,9 +57,24 @@ const submitCharacter = ()=>{
     setCharacterList([...characterList, {nom: characterName, description: description, image:image   }])
 }
 
+
+const deleteCharacter = ()=>{
+  Axios.delete(`http://localhost:3001/api/delete/ttt` )
+   console.log('deleteCharacter');
+ }
+
 console.log('characterName', characterName)
 console.log('description', description)
 console.log('image', image)
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="form">
@@ -90,6 +109,16 @@ console.log('image', image)
         Envoyer
       </Button>
 
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={()=>{deleteCharacter()}}
+      >
+        Supprimer
+      </Button>
+
       {characterList.map((val)=>{
         return (
           <div>
@@ -104,6 +133,8 @@ console.log('image', image)
           </div>
           )
       })}
+
+
       </form>
     </div>
   );

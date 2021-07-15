@@ -104,7 +104,7 @@ export default function PersonnagesPage() {
   return (
     <div>
       <Helmet>
-        <title>Personnages Page</title>
+        <title>Accueil</title>
         <meta
           name="description"
           content="React - recherche de personnages Marvel"
